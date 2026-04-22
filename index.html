@@ -1,174 +1,563 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Portofolio | Beranda</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #eeeeee;
-            margin: 0;
-        }
-
-        header {
-            background-color: #1abc9c;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        nav {
-            background-color: #16a085;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .container {
-            width: 90%;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        /* GRID UTAMA */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-
-        /* TEKS KIRI */
-        .content-text h2 {
-            color: #16a085;
-        }
-
-        .content-text p {
-            text-align: justify;
-        }
-
-        /* GRID GAMBAR KANAN */
-    .content-gallery {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 300px 300px;
-        gap: 0;
-        border-radius: 12px;
-        overflow: hidden;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio | Beranda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --secondary: #14b8a6;
+      --accent: #f59e0b;
+      --bg: #f4f7fb;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 18px 40px rgba(15, 118, 110, 0.12);
+      --radius: 22px;
     }
 
-    .content-gallery img {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .wrapper {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(20, 184, 166, 0.9));
+      color: white;
+      padding: 80px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      z-index: 0;
+    }
+
+    header::before {
+      width: 280px;
+      height: 280px;
+      top: -100px;
+      right: -80px;
+    }
+
+    header::after {
+      width: 180px;
+      height: 180px;
+      bottom: -70px;
+      left: -40px;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      max-width: 650px;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(15, 118, 110, 0.08);
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
+    }
+
+    .nav-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 0.4px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 42px 0 60px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      color: var(--primary-dark);
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, var(--secondary), var(--accent));
+    }
+
+    .lead {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .content-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .content-item {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(15, 118, 110, 0.08);
+      transition: 0.25s ease;
+    }
+
+    .content-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 24px rgba(15, 118, 110, 0.08);
+    }
+
+    .content-item h3 {
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .content-item p {
+      color: #374151;
+      text-align: justify;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(245, 158, 11, 0.12));
+      border: 1px dashed rgba(15, 118, 110, 0.2);
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 22px;
+    }
+
+    .highlight-box h3 {
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .gallery-card {
+      position: sticky;
+      top: 88px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      min-height: 220px;
+      background: #dbeafe;
+      box-shadow: 0 12px 24px rgba(31, 41, 55, 0.08);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item span {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(17, 24, 39, 0.6);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      border: 1px solid rgba(15, 118, 110, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      margin-top: 30px;
+    }
+
+    .footer-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    .footer-inner p {
+      opacity: 0.95;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 64px 18px 48px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
+      }
+
+      .menu a {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .gallery-grid,
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item {
+        min-height: 200px;
+      }
     }
-
-        footer {
-            background-color: #1abc9c;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        /* RESPONSIVE (HP) */
-        @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  </style>
 </head>
-
 <body>
-
-<header>
-    <h1>PORTOFOLIO MUHAMMAD FATHIR MUZAKKI</h1>
-    <p>Karya Nyata dari Proses Belajar</p>
-</header>
-
-<nav>
-    <a href="index.html">Beranda</a>
-    <a href="profil.html">Profil</a>
-    <a href="video.html">Video</a>
-    <a href="project.html">My Project</a>
-</nav>
-
-<div class="container">
-
-    <div class="content-grid">
-
-        <!-- BAGIAN KIRI: TEKS (WAJIB DIISI SENDIRI) -->
-        <div class="content-text">
-
-            <h2>Selamat Datang di Website Portofolio</h2>
-            <p>
-                Website ini merupakan media pendukung untuk menampilkan hasil
-                Ujian Praktik Terintegrasi. Konten utama pada website ini adalah
-                video broadcasting pembelajaran yang berisi penyampaian teks
-                argumentasi secara lisan.
-            </p>
-
-            <h2>Tentang Website Ini</h2>
-            <p>
-                Website ini merupakan website portofolio digital yang berisi
-                hasil karya dan pembelajaran saya selama mengikuti Ujian Praktik
-                Terintegrasi.
-            </p>
-
-            <h2>Tujuan Pembuatan Website</h2>
-            <p>
-                Tujuan pembuatan website ini adalah untuk menampilkan karya
-                yang telah saya buat serta melatih kemampuan saya dalam
-                membuat website sederhana menggunakan HTML.
-            </p>
-
-            <h2>Topik Argumentasi dan Alasan Pemilihan</h2>
-            <p>
-                <i>
-                Topik argumentasi yang saya angkat dalam video ini adalah kegiatan Internship Curriculum di D’Kandang sebagai sarana pembelajaran di luar kelas. Saya memilih topik ini karena kegiatan tersebut memberikan pengalaman belajar yang berbeda, di mana siswa dapat belajar secara langsung melalui praktik dan observasi di lapangan. Melalui video ini, saya ingin menampilkan pengalaman tersebut dengan konsep pengambilan gambar yang cinematic.
-                </i>
-            </p>
-
-            <h2>Harapan dari Video</h2>
-            <p>
-                <i>
-                Saya berharap video ini dapat memberikan gambaran kepada penonton tentang bagaimana kegiatan Internship Curriculum dapat menjadi pengalaman belajar yang menyenangkan dan bermanfaat. Selain itu, saya berharap video ini dapat menunjukkan bahwa belajar tidak hanya dilakukan di dalam kelas, tetapi juga melalui pengalaman langsung di lapangan.
-                </i>
-            </p>
-
-            <h2>Refleksi, Kesan, dan Pesan</h2>
-            <p>
-                <i>
-                Selama ujian praktik dan pembelajaran di Kelas IX SMPIT Al Haraki, saya belajar meningkatkan pengetahuan, tanggung jawab, kerja sama, dan kepercayaan diri. Kesan saya sangat positif karena lingkungan belajar yang nyaman serta dukungan guru dan teman. Semoga SMPIT Al Haraki terus menjadi tempat yang inspiratif dan melahirkan generasi berprestasi dan berakhlak baik.
-                </i>
-            </p>
-
-        </div>
-
-        <!-- BAGIAN KANAN: GRID GAMBAR (BEBAS KREATIF) -->
-        <div class="content-gallery">
-            <img src="https://i.pinimg.com/736x/8f/89/0c/8f890c0a94a9e0b2cb93196e7334a5da.jpg" alt="Gambar Bebas 1">
-            <img src="https://i.pinimg.com/1200x/c6/74/d4/c674d42fe3848365fbe98b30797721a8.jpg" alt="Gambar Bebas 2">
-            <img src="https://i.pinimg.com/736x/49/de/c7/49dec7ca916612ca2de3b19f8cd5f109.jpg" alt="Gambar Bebas 3">
-            <img src="https://i.pinimg.com/736x/20/3e/df/203edffaac7c5969d0106460bb50cea6.jpg" alt="Gambar Bebas 4">
-        </div>
-
+  <header>
+    <div class="wrapper hero">
+      <div class="hero-text">
+        <div class="hero-badge">✨ Portofolio Digital Ujian Praktik Terintegrasi</div>
+        <h1>Muhammad Fathir Muzakki</h1>
+        <p>
+          Website portofolio ini menampilkan proses belajar, karya, dan pengalaman saya dalam bentuk
+          video broadcasting argumentatif yang dikemas lebih modern, rapi, dan menarik.
+        </p>
+      </div>
+      <div class="hero-card">
+        <h3>Fokus Portofolio</h3>
+        <p>
+          Menampilkan hasil karya, pengalaman internship curriculum, refleksi pembelajaran, dan
+          pengembangan keterampilan digital melalui pembuatan website berbasis HTML.
+        </p>
+      </div>
     </div>
+  </header>
 
-</div>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">PORTOFOLIO</div>
+      <div class="menu">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="video.html">Video</a>
+        <a href="project.html">My Project</a>
+      </div>
+    </div>
+  </nav>
 
-<footer>
-    <p>Ujian Praktik Terintegrasi | SMPIT Al Haraki | Muhammad Fathir Muzakki@2026 </p>
-</footer>
+  <main>
+    <div class="wrapper intro-grid">
+      <section class="card">
+        <h2 class="section-title">Selamat Datang</h2>
+        <p class="lead">
+          Website ini merupakan media pendukung untuk menampilkan hasil Ujian Praktik Terintegrasi.
+          Konten utama pada website ini adalah video broadcasting pembelajaran yang berisi penyampaian
+          teks argumentasi secara lisan.
+        </p>
 
+        <div class="content-list">
+          <article class="content-item">
+            <h3>Tentang Website Ini</h3>
+            <p>
+              Website ini merupakan portofolio digital yang berisi hasil karya dan pembelajaran saya
+              selama mengikuti Ujian Praktik Terintegrasi. Desainnya dibuat lebih modern agar nyaman
+              dilihat, mudah dibaca, dan tetap menunjukkan identitas akademik saya.
+            </p>
+          </article>
+
+          <article class="content-item">
+            <h3>Tujuan Pembuatan Website</h3>
+            <p>
+              Tujuan pembuatan website ini adalah untuk menampilkan karya yang telah saya buat serta
+              melatih kemampuan saya dalam membuat website sederhana menggunakan HTML, CSS, dan tata
+              letak digital yang lebih terstruktur.
+            </p>
+          </article>
+
+          <article class="content-item">
+            <h3>Topik Argumentasi dan Alasan Pemilihan</h3>
+            <p>
+              Topik argumentasi yang saya angkat dalam video ini adalah kegiatan <em>Internship Curriculum</em>
+              di D’Kandang sebagai sarana pembelajaran di luar kelas. Saya memilih topik ini karena kegiatan
+              tersebut memberikan pengalaman belajar yang berbeda, di mana siswa dapat belajar secara langsung
+              melalui praktik dan observasi di lapangan. Melalui video ini, saya ingin menampilkan pengalaman
+              tersebut dengan konsep pengambilan gambar yang cinematic.
+            </p>
+          </article>
+
+          <article class="content-item">
+            <h3>Harapan dari Video</h3>
+            <p>
+              Saya berharap video ini dapat memberikan gambaran kepada penonton tentang bagaimana kegiatan
+              <em>Internship Curriculum</em> dapat menjadi pengalaman belajar yang menyenangkan dan bermanfaat.
+              Selain itu, video ini diharapkan menunjukkan bahwa belajar tidak hanya dilakukan di dalam kelas,
+              tetapi juga melalui pengalaman langsung di lapangan.
+            </p>
+          </article>
+
+          <article class="content-item">
+            <h3>Refleksi, Kesan, dan Pesan</h3>
+            <p>
+              Selama ujian praktik dan pembelajaran di Kelas IX SMPIT Al Haraki, saya belajar meningkatkan
+              pengetahuan, tanggung jawab, kerja sama, dan kepercayaan diri. Kesan saya sangat positif karena
+              lingkungan belajar yang nyaman serta dukungan guru dan teman. Semoga SMPIT Al Haraki terus menjadi
+              tempat yang inspiratif dan melahirkan generasi berprestasi serta berakhlak baik.
+            </p>
+          </article>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Nilai Utama yang Ingin Ditampilkan</h3>
+          <p>
+            Kreativitas, pengalaman belajar langsung, kemampuan komunikasi, serta keberanian untuk menyampaikan
+            gagasan secara visual dan argumentatif.
+          </p>
+        </div>
+      </section>
+
+      <aside class="card gallery-card">
+        <h2 class="section-title">Galeri Visual</h2>
+        <p class="lead">
+          Kumpulan ilustrasi pendukung yang membuat tampilan website lebih hidup, dinamis, dan menarik.
+        </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="ilustrasi-pendidikan-kreatif-dan-penuh-warna-dengan-buku-dan-perlengkapan-sekolah_1300528-7300.avif" alt="Ilustrasi pendidikan kreatif" />
+            <span>Pendidikan</span>
+          </div>
+          <div class="gallery-item">
+            <img src="pngtree-hand-drawn-cartoon-education-book-infographic-illustration-png-image_2200304.jpg" alt="Ilustrasi buku pendidikan" />
+            <span>Belajar</span>
+          </div>
+          <div class="gallery-item">
+            <img src="images.jpeg" alt="Ilustrasi alat tulis edukasi" />
+            <span>Kreativitas</span>
+          </div>
+          <div class="gallery-item">
+            <img src="istockphoto-1206750602-612x612.jpg" alt="Ilustrasi suasana sekolah" />
+            <span>Inspirasi</span>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="stat">
+            <strong>4</strong>
+            <span>Menu Utama</span>
+          </div>
+          <div class="stat">
+            <strong>1</strong>
+            <span>Portofolio Digital</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Semangat Belajar</span>
+          </div>
+          <div class="stat">
+            <strong>2026</strong>
+            <span>Tahun Presentasi</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Ujian Praktik Terintegrasi | SMPIT Al Haraki | Muhammad Fathir Muzakki © 2026</p>
+    </div>
+  </footer>
 </body>
 </html>

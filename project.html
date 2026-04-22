@@ -1,167 +1,476 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Portofolio | My Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #eeeeee;
-            margin: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio | My Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --secondary: #14b8a6;
+      --accent: #f59e0b;
+      --bg: #f4f7fb;
+      --card: rgba(255, 255, 255, 0.9);
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 18px 40px rgba(15, 118, 110, 0.12);
+      --radius: 22px;
+    }
 
-        header {
-            background-color: #1abc9c;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        nav {
-            background-color: #16a085;
-            padding: 10px;
-            text-align: center;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .container {
-            width: 90%;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+    .wrapper {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
 
-        .container h2 {
-            color: #16a085;
-            text-align: center;
-        }
+    header {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(20, 184, 166, 0.9));
+      color: white;
+      padding: 80px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .container p {
-            text-align: center;
-        }
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      z-index: 0;
+    }
 
-        /* GRID PROJECT (ALA GAME) */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
+    header::before {
+      width: 280px;
+      height: 280px;
+      top: -100px;
+      right: -80px;
+    }
 
-        .project-card {
-            background-color: #f5f5f5;
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s;
-        }
+    header::after {
+      width: 180px;
+      height: 180px;
+      bottom: -70px;
+      left: -40px;
+    }
 
-        .project-card:hover {
-            transform: scale(1.05);
-        }
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
 
-        .project-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
 
-        .project-card a {
-            display: block;
-            padding: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            color: #16a085;
-            background-color: #ffffff;
-        }
+    .hero-text p {
+      font-size: 1.05rem;
+      max-width: 650px;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
 
-        .project-card a:hover {
-            background-color: #1abc9c;
-            color: white;
-        }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
 
-        footer {
-            background-color: #1abc9c;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-        }
-    </style>
+    .hero-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(15, 118, 110, 0.08);
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
+    }
+
+    .nav-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 0.4px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 42px 0 60px;
+    }
+
+    .page-intro {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .page-intro h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .page-intro p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .project-section {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 118, 110, 0.08);
+      box-shadow: 0 14px 28px rgba(31, 41, 55, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 36px rgba(15, 118, 110, 0.12);
+    }
+
+    .project-image {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+      background: #d1fae5;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.08);
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.7);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+    }
+
+    .project-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .project-content h3 {
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex: 1;
+    }
+
+    .project-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: 0.25s ease;
+      margin-top: 6px;
+    }
+
+    .project-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(15, 118, 110, 0.18);
+    }
+
+    .note-box {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(245, 158, 11, 0.12));
+      border: 1px dashed rgba(15, 118, 110, 0.2);
+      color: #374151;
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      margin-top: 30px;
+    }
+
+    .footer-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 64px 18px 48px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu {
+        width: 100%;
+      }
+
+      .menu a {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+
+      .project-section {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<header>
-    <h1>PORTOFOLIO MUHAMMAD FATHIR MUZAKKI</h1>
-    <p>Karya Nyata dari Proses Belajar</p>
-</header>
-
-<nav>
-    <a href="index.html">Beranda</a>
-    <a href="profil.html">Profil</a>
-    <a href="video.html">Video</a>
-    <a href="project.html">My Project</a>
-</nav>
-
-<div class="container">
-
-    <h2>My Project</h2>
-    <p>
-        <i>
-        Halaman ini menampilkan kumpulan proyek yang pernah saya buat.
-        Klik judul proyek untuk melihat hasil karya saya.
-        </i>
-    </p>
-
-    <div class="project-grid">
-
-        <!-- PROJECT 1 -->
-        <div class="project-card">
-            <img src="project1.jpg" alt="Project 1">
-            <a href="https://link-proyek-1.com" target="_blank">
-                Video Argumentasi
-            </a>
-        </div>
-
-        <!-- PROJECT 2 -->
-        <div class="project-card">
-            <img src="project2.jpg" alt="Project 2">
-            <a href="https://link-proyek-2.com" target="_blank">
-                Website Portofolio
-            </a>
-        </div>
-
-        <!-- PROJECT 3 -->
-        <div class="project-card">
-            <img src="download (2).png" alt="Project 3">
-            <a href="https://scratch.mit.edu/projects/1078880039" target="_blank">
-                Game Edukasi
-            </a>
-        </div>
-
-        <!-- PROJECT 4 -->
-        <div class="project-card">
-            <img src="project4.jpg" alt="Project 4">
-            <a href="https://link-proyek-4.com" target="_blank">
-                Proyek Lainnya
-            </a>
-        </div>
-
+  <header>
+    <div class="wrapper hero">
+      <div class="hero-text">
+        <div class="hero-badge">🚀 Portofolio Karya dan Proyek</div>
+        <h1>My Project</h1>
+        <p>
+          Halaman ini menampilkan kumpulan proyek yang pernah saya buat sebagai bagian dari proses belajar,
+          pengembangan kreativitas, dan praktik keterampilan digital.
+        </p>
+      </div>
+      <div class="hero-card">
+        <h3>Isi Halaman Ini</h3>
+        <p>
+          Terdapat beberapa proyek pilihan, mulai dari video argumentasi, website portofolio,
+          game edukasi, hingga karya lainnya yang merepresentasikan hasil pembelajaran saya.
+        </p>
+      </div>
     </div>
+  </header>
 
-</div>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">PORTOFOLIO</div>
+      <div class="menu">
+        <a href="index.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="video.html">Video</a>
+        <a href="project.html" class="active">My Project</a>
+      </div>
+    </div>
+  </nav>
 
-<footer>
-    <p>Ujian Praktik Terintegrasi | SMPIT Al Haraki | Muhammad Fathir Muzakki@2026</p>
-</footer>
+  <main>
+    <div class="wrapper">
+      <div class="page-intro">
+        <h2>Kumpulan Proyek Saya</h2>
+        <p>
+          Klik pada tombol setiap kartu proyek untuk melihat hasil karya yang telah saya buat.
+          Tampilan halaman ini disesuaikan agar setema dengan halaman beranda sebelumnya.
+        </p>
+      </div>
 
+      <section class="project-section">
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-tag">Project 1</span>
+              <img src="project1.jpg" alt="Video Argumentasi" />
+            </div>
+            <div class="project-content">
+              <h3>Video Argumentasi</h3>
+              <p>
+                Proyek video argumentatif yang menampilkan kemampuan berbicara, penyusunan ide,
+                dan penyajian pesan secara visual.
+              </p>
+              <a class="project-link" href="https://link-proyek-1.com" target="_blank">Lihat Proyek</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-tag">Project 2</span>
+              <img src="project2.jpg" alt="Website Portofolio" />
+            </div>
+            <div class="project-content">
+              <h3>Website Portofolio</h3>
+              <p>
+                Website ini dibuat untuk menampilkan karya dan pengalaman belajar dalam format digital
+                yang rapi, modern, dan menarik.
+              </p>
+              <a class="project-link" href="https://link-proyek-2.com" target="_blank">Lihat Proyek</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-tag">Project 3</span>
+              <img src="download (2).png" alt="Game Edukasi" />
+            </div>
+            <div class="project-content">
+              <h3>Game Edukasi</h3>
+              <p>
+                Game edukasi interaktif yang saya buat untuk melatih kreativitas, logika,
+                dan kemampuan merancang media pembelajaran digital.
+              </p>
+              <a class="project-link" href="https://scratch.mit.edu/projects/1078880039" target="_blank">Lihat Proyek</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <span class="project-tag">Project 4</span>
+              <img src="https://uploads.scratch.mit.edu/get_image/project/1057880113_480x360.png" alt="Game Edukasi (Scratch)" />
+            </div>
+            <div class="project-content">
+              <h3>Dungeon Maze Game (Scratch)</h3>
+              <p>
+                Game edukasi interaktif berbasis Scratch yang menampilkan kreativitas, logika, dan pemrograman visual.
+              </p>
+              <a class="project-link" href="https://scratch.mit.edu/projects/1057880113" target="_blank">Lihat Proyek</a>
+            </div>
+          </article>
+
+          
+        </div>
+
+        
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>Ujian Praktik Terintegrasi | SMPIT Al Haraki | Muhammad Fathir Muzakki © 2026</p>
+    </div>
+  </footer>
 </body>
 </html>
